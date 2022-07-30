@@ -13,23 +13,9 @@ public:
         
         //or
         
-//          for(int i=0;i<nums.size();i++){
-//              int ele=target-nums[i];
-//             if(m.find(ele)!=m.end()){
-//                 return {m[ele],i};
-//             }
-//                 m[nums[i]]=i;
-            
-            
-//         }
-//         return {};
-        
-        //or
-        
-        
          for(int i=0;i<nums.size();i++){
              int ele=target-nums[i];
-            if(m.count(ele)){
+            if(m.find(ele)!=m.end()){
                 return {m[ele],i};
             }
                 m[nums[i]]=i;
@@ -37,5 +23,8 @@ public:
             
         }
         return {};
+     
+        
+  
     }
 };
