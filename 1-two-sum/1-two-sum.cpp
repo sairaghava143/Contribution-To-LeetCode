@@ -14,8 +14,9 @@ public:
         //or
         
          for(int i=0;i<nums.size();i++){
-            if(m.find(target-nums[i])!=m.end()){
-                return {m[target-nums[i]],i};
+             int ele=target-nums[i];
+            if(m.find(ele)!=m.end()){
+                return {m[ele],i};
             }else{
                 m[nums[i]]=i;
             }
