@@ -17,9 +17,9 @@ public:
              int ele=target-nums[i];
             if(m.find(ele)!=m.end()){
                 return {m[ele],i};
-            }else{
-                m[nums[i]]=i;
             }
+                m[nums[i]]=i;
+            
             
         }
         return {};
