@@ -33,15 +33,33 @@ public:
         // return head;
         
         //brute force approach
-        int len=length(head);
-        int k=len-n;
-        ListNode *first=head;
-        if(k==0)return first->next;
-        for(int i=0;i<k-1;i++){
-            first=first->next;
+        // int len=length(head);
+        // int k=len-n;
+        // ListNode *first=head;
+        // if(k==0)return first->next;
+        // for(int i=0;i<k-1;i++){
+        //     first=first->next;
+        // }
+        // first->next=first->next->next;
+        // return head;
+        //brute force approach
+
+       ListNode* headd,*front,*tail;
+        headd=front=NULL;
+        tail=head;
+        if(headd==NULL){
+                    headd=front=head;
+
         }
-        first->next=first->next->next;
-        return head;
-        
+        while(n--){
+            tail=tail->next;
+        }
+        if(tail==NULL)return headd->next;
+        while(tail->next){
+            front=front->next;
+            tail=tail->next;
+        }
+        front->next=front->next->next;
+        return headd;
     }
 };
