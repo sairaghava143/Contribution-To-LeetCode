@@ -10,31 +10,30 @@
  */
 class Solution {
 public:
+    ListNode *reverse(ListNode* head){
+        ListNode *prev=NULL;
+        while(head){
+          ListNode  *next=head->next;
+            head->next=prev;
+            prev=head;
+            head=next;
+        }
+        return prev;
+    }
     bool isPalindrome(ListNode* head) {
-        // slow and fast pointer approach
-        ListNode *slow=head,*fast=head,*prev,*n;
-        while(fast && fast->next){
+        ListNode *slow=head,*fast=head;
+        while(fast->next && fast->next->next){
             slow=slow->next;
             fast=fast->next->next;
         }
-
-prev=slow;
-                         slow=slow->next;
-
-               prev->next=NULL;
-
+        slow->next=reverse(slow->next);
+        slow=slow->next;
         while(slow){
-          n=slow->next;
-            slow->next=prev;
-            prev=slow;
-            slow=n;
-        }
-        fast=head,slow=prev;
-        while(slow){
-            if(slow->val!=fast->val)return false;
+            if(slow->val!=head->val)return false;
+            head=head->next;
             slow=slow->next;
-            fast=fast->next;
         }
         return true;
+        
     }
 };
