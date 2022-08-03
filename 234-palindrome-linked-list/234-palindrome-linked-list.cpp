@@ -17,9 +17,10 @@ public:
             slow=slow->next;
             fast=fast->next->next;
         }
-        
+
 prev=slow;
-         slow=slow->next;
+                         slow=slow->next;
+
                prev->next=NULL;
 
         while(slow){
