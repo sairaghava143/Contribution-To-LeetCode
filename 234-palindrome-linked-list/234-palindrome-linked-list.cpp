@@ -11,15 +11,28 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int>v,v1;
-        while(head){
-            v.push_back(head->val);
-            head=head->next;
+        // slow and fast pointer approach
+        ListNode *slow=head,*fast=head,*prev,*n;
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
         }
-        v1=v;
-        reverse(v1.begin(),v1.end());
-        for(int i=0;i<v.size();i++){
-            if(v[i]!=v1[i])return false;
+        
+prev=slow;
+         slow=slow->next;
+               prev->next=NULL;
+
+        while(slow){
+          n=slow->next;
+            slow->next=prev;
+            prev=slow;
+            slow=n;
+        }
+        fast=head,slow=prev;
+        while(slow){
+            if(slow->val!=fast->val)return false;
+            slow=slow->next;
+            fast=fast->next;
         }
         return true;
     }
