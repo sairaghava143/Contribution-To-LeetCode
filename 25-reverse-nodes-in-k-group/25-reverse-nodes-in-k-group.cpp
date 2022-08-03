@@ -10,10 +10,10 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode *first,ListNode* last){
-        ListNode *prev=last;
-        while(first!=last){
-            auto *n=first->next;
+    ListNode *reverse(ListNode* first,ListNode* last){
+        auto *prev=last;
+        while(first !=last){
+          auto *  n=first->next;
             first->next=prev;
             prev=first;
             first=n;
@@ -22,7 +22,7 @@ public:
     }
     ListNode* reverseKGroup(ListNode* head, int k) {
         if(head==NULL||k==1)return head;
-        auto curr=head;
+        auto *curr=head;
         for(int i=0;i<k;i++){
             if(curr==NULL)return head;
             curr=curr->next;
@@ -30,6 +30,5 @@ public:
         auto new_head=reverse(head,curr);
         head->next=reverseKGroup(curr,k);
         return new_head;
-        
     }
 };
