@@ -12,21 +12,23 @@ public:
         ListNode *slow=head;
         ListNode *fast=head;
         while(fast && fast->next){
+
             slow=slow->next;
             fast=fast->next->next;
-                        if(slow==fast)break;
+           if(slow==fast)break;    ///this condition should come after the above two conditions manditatory
 
         }
         if(fast==NULL || fast->next==NULL)return NULL;
-        fast=head;
-        while(fast){
-            if(slow==fast)return fast;
+        slow=head;
+        while(slow!=fast){
+            // if(slow==fast)return fast;
             slow=slow->next;
             fast=fast->next;
         }
     
        
-        return NULL;
+        // return NULL;
+        return slow;
         
         //map approach
         // unordered_map<ListNode*,int>m;
