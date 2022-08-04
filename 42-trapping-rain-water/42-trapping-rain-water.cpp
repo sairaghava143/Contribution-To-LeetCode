@@ -39,22 +39,53 @@ public:
         //     totalwater+=currentwater;
         // }
         // return totalwater;
+        
+        ///better brute force approach
+        // int n=height.size();
+        // vector<int>leftmax(n),rightmax(n);
+        // int ans=0;
+        // for(int i=0;i<n;i++){
+        //     ans=max(ans,height[i]);
+        //     leftmax[i]=ans;
+        // }
+        // ans=0;
+        // for(int i=n-1;i>=0;i--){
+        //     ans=max(ans,height[i]);
+        //     rightmax[i]=ans;
+        // }
+        // int totalans=0;
+        // for(int i=0;i<n;i++){
+        //   totalans+=min(leftmax[i],rightmax[i])-height[i];
+        // }
+        // return totalans;
+        
+        ///optimized two pointer approach
         int n=height.size();
-        vector<int>leftmax(n),rightmax(n);
-        int ans=0;
-        for(int i=0;i<n;i++){
-            ans=max(ans,height[i]);
-            leftmax[i]=ans;
+        int left=0,right=n-1;
+        int leftmax=0,rightmax=0,totalans=0;
+        while(left<=right){
+            if(height[left]<=height[right]){
+                if(height[left]>=leftmax){
+                leftmax=height[left];
+            }else{
+                totalans+=leftmax-height[left];
+            }
+                                left++;
+
+            }else{
+                 if(height[right]>=rightmax){
+                rightmax=height[right];
+            }else{
+                totalans+=rightmax-height[right];
+            }
+                                right--;
+
+            }
+            
+           
+            
         }
-        ans=0;
-        for(int i=n-1;i>=0;i--){
-            ans=max(ans,height[i]);
-            rightmax[i]=ans;
-        }
-        int totalans=0;
-        for(int i=0;i<n;i++){
-          totalans+=min(leftmax[i],rightmax[i])-height[i];
-        }
+        
         return totalans;
         
         
