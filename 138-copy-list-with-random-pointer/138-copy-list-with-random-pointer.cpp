@@ -34,7 +34,7 @@ public:
         
         
           //time O(n)  space O(1)
-        
+        //https://leetcode.com/problems/copy-list-with-random-pointer/discuss/1059181/C%2B%2B-or-Three-Pass-or-O(n)-0ms-Beats-100-or-Explanation-(with-example)
         Node *node=head;
         while(node){
             Node *temp=node->next;
