@@ -9,7 +9,7 @@ public:
         }
         v.push_back(n);
         string ans="";
-        k-=1;
+        k=k-1;
         while(true){
             ans+=to_string(v[k/fact]);
             v.erase(v.begin()+k/fact);
