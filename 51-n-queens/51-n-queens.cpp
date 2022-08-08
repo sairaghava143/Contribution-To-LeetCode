@@ -37,15 +37,48 @@ public:
             }
         }
     }
+    void solve2(vector<int> rowleft,vector<int> lowerbound,vector<int>upperbound,vector<vector<string>>&ans,int col,int n,vector<string> s){
+        if(col==n){
+            ans.push_back(s);
+            return ;
+        }
+        
+        for(int row=0;row<n;row++){
+            if(rowleft[row]==0 && lowerbound[col+row]==0 && upperbound[n-1+col-row]==0){
+                s[row][col]='Q';
+                rowleft[row]=1;
+                lowerbound[row+col]=1;
+                upperbound[n-1+col-row]=1;
+                solve2(rowleft,lowerbound,upperbound,ans,col+1,n,s);
+                s[row][col]='.';
+                rowleft[row]=0;
+                lowerbound[row+col]=0;
+                upperbound[n-1+col-row]=0;
+            }
+        }
+    }
     vector<vector<string>> solveNQueens(int n) {
         //brute force
+        // vector<vector<string>>ans;
+        // vector<string>s(n);
+        // string st(n,'.');
+        // for(int i=0;i<n;i++){
+        //     s[i]=st;
+        // }
+        // solve(ans,s,n,0);
+        // return ans;
+        
+        ///optimized approach using hash
+        vector<int>rowleft(n,0),lowerbound(2*n-1,0),upperbound(2*n-1,0);
         vector<vector<string>>ans;
         vector<string>s(n);
         string st(n,'.');
         for(int i=0;i<n;i++){
             s[i]=st;
         }
-        solve(ans,s,n,0);
+        solve2(rowleft,lowerbound,upperbound,ans,0,n,s);
         return ans;
+        
+        
     }
 };
