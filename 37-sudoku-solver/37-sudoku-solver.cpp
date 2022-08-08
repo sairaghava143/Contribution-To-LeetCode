@@ -29,7 +29,7 @@ public:
         }
         return true;
     }
-    bool isValid(vector<vector<char>> board, int i, int j, char c)
+    bool isValid(vector<vector<char>> &board, int i, int j, char c)
     {
         for (int k = 0; k < 9; k++)
         {
