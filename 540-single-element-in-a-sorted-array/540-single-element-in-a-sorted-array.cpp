@@ -1,11 +1,15 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
-        int ans=0;
-        for(int i=0;i<nums.size();i++){
-            ans^=nums[i];
+        int s=0,e=nums.size()-2;
+        while(s<=e){
+            int mid=s+(e-s)/2;
+            if(nums[mid]==nums[mid^1]){
+                s=mid+1;
+            }else{
+                e=mid-1;
+            }
         }
-        cout<<ans;
-        return ans;
+        return nums[s];
     }
 };
