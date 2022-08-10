@@ -17,10 +17,10 @@ public:
             
             if(left1<=right2 && left2<=right1){
                 if((n1+n2)&1){
-                    return double(max(left1,left2));
+                    return max(left1,left2);
+                    
                 }else{
                     return (max(left1,left2)+min(right1,right2))/2.0;
-                    
                 }
             }else if(left1>right2){
                 e=cut1-1;
