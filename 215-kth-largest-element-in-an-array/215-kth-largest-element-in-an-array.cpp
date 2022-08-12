@@ -30,7 +30,11 @@ public:
 //     }
 //         return q.top();
        ///nth element stl
-        nth_element(nums.begin(),nums.begin()+k-1,nums.end(),greater<int>());
+        // nth_element(nums.begin(),nums.begin()+k-1,nums.end(),greater<int>());
+        // return nums[k-1];
+        
+        //parial sort
+        partial_sort(nums.begin(),nums.begin()+k,nums.end(),greater<int>());
         return nums[k-1];
 
     }
