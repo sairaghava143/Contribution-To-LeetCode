@@ -13,13 +13,23 @@ public:
         //     }
         // }
         // return q.top();
-        priority_queue<int>q;
+    //     priority_queue<int>q;
+    //     for(int i=0;i<nums.size();i++){
+    //         q.push(nums[i]);
+    //     }
+    // for(int i=0;i<k-1;i++){
+    //     q.pop();
+    // }
+    //     return q.top();
+         priority_queue<int,vector<int>,greater<int>>q;
         for(int i=0;i<nums.size();i++){
             q.push(nums[i]);
         }
-    for(int i=0;i<k-1;i++){
+    for(int i=0;i<nums.size()-k;i++){
         q.pop();
     }
         return q.top();
+       
+
     }
 };
