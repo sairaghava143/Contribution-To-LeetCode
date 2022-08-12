@@ -21,15 +21,17 @@ public:
     //     q.pop();
     // }
     //     return q.top();
-         priority_queue<int,vector<int>,greater<int>>q;
-        for(int i=0;i<nums.size();i++){
-            q.push(nums[i]);
-        }
-    for(int i=0;i<nums.size()-k;i++){
-        q.pop();
-    }
-        return q.top();
-       
+//          priority_queue<int,vector<int>,greater<int>>q;
+//         for(int i=0;i<nums.size();i++){
+//             q.push(nums[i]);
+//         }
+//     for(int i=0;i<nums.size()-k;i++){
+//         q.pop();
+//     }
+//         return q.top();
+       ///nth element stl
+        nth_element(nums.begin(),nums.begin()+k-1,nums.end(),greater<int>());
+        return nums[k-1];
 
     }
 };
