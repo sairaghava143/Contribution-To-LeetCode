@@ -34,8 +34,16 @@ public:
         // return nums[k-1];
         
         //parial sort
-        partial_sort(nums.begin(),nums.begin()+k,nums.end(),greater<int>());
-        return nums[k-1];
+        // partial_sort(nums.begin(),nums.begin()+k,nums.end(),greater<int>());
+        // return nums[k-1];
+        multiset<int> mset;
+        for (int num : nums) {
+            mset.insert(num);
+            if (mset.size() > k) {
+                mset.erase(mset.begin());
+            }
+        }
+        return *mset.begin();
 
     }
 };
