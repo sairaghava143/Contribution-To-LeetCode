@@ -2,9 +2,7 @@ class MedianFinder {
 public:
     priority_queue<int>maxheap;
     priority_queue<int,vector<int>,greater<int>>minheap;
-    
     MedianFinder() {
-        
         
     }
     
@@ -45,17 +43,15 @@ public:
                 }
             }
         }
-        
     }
     
     double findMedian() {
         int lsize=maxheap.size();
         int rsize=minheap.size();
         if(lsize>rsize){
-            return double(maxheap.top());
+            return maxheap.top();
         }
         return (maxheap.top()+minheap.top())/2.0;
-        
     }
 };
 
