@@ -1,5 +1,6 @@
 class MyStack {
 public:
+    //using 2 queue
     queue<int>q1;
     queue<int>q2;
     MyStack() {
