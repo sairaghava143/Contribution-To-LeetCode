@@ -14,14 +14,11 @@ public:
     }
     
     void put(int key, int value) {
-       if(m.count(key)){
-           l.splice(l.begin(),l,m[key]);
-           m[key]->second=value;
-           
-           return;
-           
-           
-       }
+        if(m.count(key)){
+            l.splice(l.begin(),l,m[key]);
+            m[key]->second=value;
+            return;
+        }
         if(cp==l.size()){
             auto b=l.back().first;
             l.pop_back();
@@ -29,8 +26,6 @@ public:
         }
         l.push_front({key,value});
         m[key]=l.begin();
-            
-        
     }
 };
 
