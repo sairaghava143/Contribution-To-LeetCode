@@ -32,8 +32,9 @@ public:
                             if(i==n)break;
 
                 s[r++]=' ';
+ l=r;
+
             }
-            l=r;
             i++;
         }
         if(r>0 && s[r-1]==' ')r--;
