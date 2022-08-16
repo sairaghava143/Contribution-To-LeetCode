@@ -12,7 +12,7 @@ public:
                 m['M']=1000;
 
        for(int i=s.size()-1;i>=0;i--){
-           if(i !=s.size()-1 && m[s[i]]<m[s[i+1]]){
+           if( m[s[i]]<m[s[i+1]]){
                sum-=m[s[i]];
            }else{
                sum+=m[s[i]];
