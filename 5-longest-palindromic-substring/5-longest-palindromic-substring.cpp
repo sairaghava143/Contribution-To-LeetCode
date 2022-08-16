@@ -5,7 +5,7 @@ public:
         int n=s.size();
         //odd
     
-            for(int i=0;i<n-1;i++){
+            for(int i=0;i<n;i++){
             int l=i;
             int r=i;
             while(l>=0 && r<n ){
@@ -27,7 +27,7 @@ public:
       
          //even
     
-            for(int i=0;i<n-1;i++){
+            for(int i=0;i<n;i++){
             int l=i;
             int r=i+1;
             while(l>=0 && r<n ){
