@@ -9,9 +9,11 @@ public:
             for(int i=1;i<strs.size();i++){
             if(strs[i][j]!=x[j])check=false;
         }
-            if(!check)break;
+          
             if(check){
                 word+=x[j];
+            }else{
+                break;
             }
         }
         return word;
