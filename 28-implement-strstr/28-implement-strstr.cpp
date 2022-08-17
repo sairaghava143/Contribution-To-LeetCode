@@ -6,13 +6,19 @@ public:
         int m=needle.size();
     
         if(n<m)return -1;
-        for(int i=0;i<=n-m;i++){
-            int j;
-            for(j=0;j<m;j++){
-                if(haystack[i+j]!=needle[j])break;
+        auto found=haystack.find(needle);
+      
+            if(found!=string::npos){
+                return found;
             }
-             if(j==m)return i;
-        }
+        
+//         for(int i=0;i<=n-m;i++){
+//             int j;
+//             for(j=0;j<m;j++){
+//                 if(haystack[i+j]!=needle[j])break;
+//             }
+//              if(j==m)return i;
+//         }
        
        
         return -1;
