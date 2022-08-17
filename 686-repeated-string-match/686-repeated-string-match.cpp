@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //learnt new thing find substring
     bool check(string a,string b){
         int n=a.size();
         int m=b.size();
