@@ -18,7 +18,6 @@ public:
                 }
             }
             s=t;
-            
         }
         return s;
     }
