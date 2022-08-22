@@ -11,35 +11,23 @@
  */
 class Solution {
 public:
-    TreeNode* build(vector<int>&preorder,vector<int>&inorder,int pres,int pree,int ins,int ine){
-        if(ins>ine)return NULL;
-        int rootdata=preorder[pres];
-        int rootindex;
-        for(int i=0;i<inorder.size();i++){
-            if(inorder[i]==rootdata){
-                rootindex=i;
-                break;
-            }
-        }
-        
-        int prels=pres+1;
-        int inols=ins;
-       int inole=rootindex-1;
-         int prele =inole-inols+prels;
-        
-        int prers=prele+1;
-        int prere=pree;
-        int inors=rootindex+1;
-        int inore=ine;
-        
-        TreeNode * root=new TreeNode(rootdata);
-        root->left=build(preorder,inorder,prels,prele,inols,inole);
-        root->right=build(preorder,inorder,prers,prere,inors,inore);
-        return root; 
-    }
+    
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int n=inorder.size();
-        return build(preorder,inorder,0,n-1,0,n-1);
-        
+        int rootindex=0;
+        return build(preorder,inorder,rootindex,0,inorder.size()-1);
     }
+    
+    TreeNode* build(vector<int>&preorder,vector<int>&inorder,int &rootindex,int left,int right){
+        if(left>right)return NULL;
+        int pivot=left;
+        while(inorder[pivot]!=preorder[rootindex])pivot++;
+        rootindex++;
+        TreeNode* root=new TreeNode(inorder[pivot]);
+
+        root->left=build(preorder,inorder,rootindex,left,pivot-1);
+        root->right=build(preorder,inorder,rootindex,pivot+1,right);
+        return root;
+
+    }
+    
 };
