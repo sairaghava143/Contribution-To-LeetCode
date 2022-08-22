@@ -11,13 +11,11 @@
  */
 class Solution {
 public:
-    
-    //morris approach
     void flatten(TreeNode* root) {
         TreeNode* curr=root;
         while(curr){
             if(curr->left){
-                TreeNode * pre=curr->left;
+                TreeNode* pre=curr->left;
                 while(pre->right){
                     pre=pre->right;
                 }
