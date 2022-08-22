@@ -14,11 +14,12 @@ public:
     TreeNode* node=NULL;
     void flatten(TreeNode* root) {
         if(root==NULL)return;
-        //reverse postorder traversal
         flatten(root->right);
         flatten(root->left);
         root->right=node;
         root->left=NULL;
         node=root;
+        
+        
     }
 };
