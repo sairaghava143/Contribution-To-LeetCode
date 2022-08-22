@@ -11,8 +11,8 @@
  */
 class Solution {
 public:
-    void flatten(TreeNode* root) {
-        TreeNode* curr=root;
+    void flatten(TreeNode* curr) {
+        // TreeNode* curr=root;
         while(curr){
             if(curr->left){
                 TreeNode* pre=curr->left;
