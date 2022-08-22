@@ -11,33 +11,23 @@
  */
 class Solution {
 public:
-    TreeNode *build(vector<int>& inorder, vector<int>& postorder,int ins,int ine,int poss,int pose){
-        if(ins>ine)return NULL;
-        int rootdata=postorder[pose];
-        int rootindex;
-        for(int i=0;i<inorder.size();i++){
-            if(inorder[i]==rootdata){
-                rootindex=i;
-                break;
-            }
-        }
-        int inls=ins;
-        int inle=rootindex-1;
-        int inrs=rootindex+1;
-        int inre=ine;
+     TreeNode* build(vector<int>&inorder,vector<int>&postorder,int &rootindex,int left,int right){
+        if(left>right)return NULL;
+     
         
-        int posls=poss;
-        int posle=inle-inls+posls;
-        int posrs=posle+1;
-            int posre=pose-1;
-        TreeNode* root=new TreeNode(rootdata);
-        root->left=build(inorder,postorder,inls,inle,posls,posle);
-        root->right=build(inorder,postorder,inrs,inre,posrs,posre);
-        return root;
+        TreeNode* root=new TreeNode(postorder[rootindex--]);
+        int inindex=find(inorder.begin(),inorder.end(),root->val)-inorder.begin();
+                 root->right=build(inorder,postorder,rootindex,inindex+1,right);
+
+        root->left=build(inorder,postorder,rootindex,left,inindex-1);
+        return root;  
 
     }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
         int n=inorder.size();
-        return build(inorder,postorder,0,n-1,0,n-1);
+        int rootindex=n-1;
+        return build(inorder,postorder,rootindex,0,n-1);
+        
     }
+   
 };
