@@ -15,7 +15,7 @@ public:
         if(root==NULL)return 0;
         int left=height(root->left,ans);
         int right=height(root->right,ans);
-        if(left-right>1 || right-left>1){
+        if(abs(left-right)>1){
             if(ans){
                 ans=0;
             }
