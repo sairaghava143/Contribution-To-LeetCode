@@ -19,12 +19,13 @@ public:
         q.push({root,0});
         while(!q.empty()){
             int size=q.size();
-            vector<int>temp;
+            vector<int>temp(size);
             for(int i=0;i<size;i++){
                 auto node=q.front();
                 q.pop();
                 TreeNode *t=node.first;
-                temp.push_back(t->val);
+                int index=check?i:(size-i-1);
+                temp[index]=t->val;
                 if(t->left){
                     q.push({t->left,node.second-1});
                 }
@@ -35,14 +36,8 @@ public:
                 
                 
             }
-            if(check){
-                v.push_back(temp);
-                check=false;
-            }else{
-                reverse(temp.begin(),temp.end());
-                v.push_back(temp);
-                check=true;
-            }
+            v.push_back(temp);
+            check=!check;
         }
         return v;
     }
