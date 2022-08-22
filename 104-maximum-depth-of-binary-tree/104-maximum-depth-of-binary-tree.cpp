@@ -13,11 +13,11 @@ class Solution {
 public:
     int maxDepth(TreeNode* root) {
         if(root==NULL)return 0;
-        stack<pair<TreeNode*,int>>s;
+        queue<pair<TreeNode*,int>>s;
         s.push({root,1});
         int count=1;
         while(!s.empty()){
-            auto node=s.top();
+            auto node=s.front();
             s.pop();
         count=max(count,node.second);
             if(node.first->left){
