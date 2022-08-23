@@ -29,7 +29,6 @@ public:
                 curr=curr->next;
             }
             curr=temp->left;
-            
         }
         return root;
     }
