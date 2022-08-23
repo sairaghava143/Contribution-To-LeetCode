@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    bool helper(TreeNode* root,long long min=   LONG_LONG_MIN,long long max=LONG_LONG_MAX){
+    bool helper(TreeNode* root,long long min=   LLONG_MIN,long long max=LLONG_MAX){
         if(root==NULL)return true;
         bool left=helper(root->left,min,root->val);
       bool right=  helper(root->right,root->val,max);
