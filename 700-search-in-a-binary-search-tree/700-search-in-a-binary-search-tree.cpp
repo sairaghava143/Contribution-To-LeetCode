@@ -20,8 +20,8 @@ public:
 left=searchBST(root->left,val);
        right=  searchBST(root->right,val);
        }
-        if(left!=NULL)return left;
-        if(right!=NULL)return right;
+        if(left)return left;
+        if(right)return right;
         return NULL;
     }
 };
