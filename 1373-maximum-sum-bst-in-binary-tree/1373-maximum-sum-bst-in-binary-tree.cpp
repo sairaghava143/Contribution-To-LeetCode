@@ -18,9 +18,10 @@ class node{
     int maxval;
     node(){
         bst=true;
-     min=INT_MAX;
+        min=INT_MAX;
         max=INT_MIN;
         maxval=0;
+            
     }
 };
 class Solution {
@@ -32,11 +33,12 @@ public:
         node p;
         node left=maxsum(root->left);
         node right=maxsum(root->right);
-        if(left.bst && right.bst && root->val<right.min && root->val>left.max){
+        if(left.bst && right.bst && root->val>left.max && root->val<right.min){
             p.bst=true;
             p.max=max(root->val,right.max);
             p.min=min(root->val,left.min);
             p.maxval=left.maxval+right.maxval+root->val;
+                
         }else{
             p.bst=false;
             p.maxval=max(left.maxval,right.maxval);
