@@ -18,10 +18,9 @@ class node{
     int maxval;
     node(){
         bst=true;
-        min=INT_MAX;
+     min=INT_MAX;
         max=INT_MIN;
         maxval=0;
-            
     }
 };
 class Solution {
