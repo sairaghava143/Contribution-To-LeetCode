@@ -20,12 +20,13 @@ public:
     bool findTarget(TreeNode* root, int k) {
         vector<int>v;
         inorder(root,v);
-        
+        unordered_map<int,int>m;
         
     
         for(int i=0;i<v.size();i++){
-                int target=k-v[i];
-            if(binary_search(v.begin()+i+1,v.end(),target))return true;
+            if(m.count(k-v[i]))return true;
+        m[v[i]]++;
+            
         }
         return false;
     }
