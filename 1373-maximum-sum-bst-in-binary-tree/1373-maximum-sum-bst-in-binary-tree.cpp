@@ -9,20 +9,20 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-    int ans;
+int ans;
 class node{
     public:
     bool bst;
-    int max;
     int min;
+    int max;
     int maxval;
     node(){
         bst=true;
+        min=INT_MAX;
         max=INT_MIN;
-        min=INT_MAX;;
         maxval=0;
+            
     }
-    
 };
 class Solution {
 public:
@@ -32,22 +32,18 @@ public:
         }
         node p;
         node left=maxsum(root->left);
-                node right=maxsum(root->right);
-        if(left.bst==true && right.bst==true && root->val>left.max && root->val<right.min){
+        node right=maxsum(root->right);
+        if(left.bst && right.bst && root->val<right.min && root->val>left.max){
             p.bst=true;
-            p.maxval=left.maxval+right.maxval+root->val;
             p.max=max(root->val,right.max);
             p.min=min(root->val,left.min);
-           
+            p.maxval=left.maxval+right.maxval+root->val;
         }else{
             p.bst=false;
             p.maxval=max(left.maxval,right.maxval);
         }
-        
-        
- ans=max(ans,p.maxval);
-            return p;
-        
+        ans=max(ans,p.maxval);
+        return p;
     }
     int maxSumBST(TreeNode* root) {
         ans=0;
