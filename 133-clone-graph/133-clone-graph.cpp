@@ -38,15 +38,14 @@ public:
         vector<Node*>visited(1000,NULL);
         Node* copy=new Node(node->val);
         visited[node->val]=copy;
-        
         for(auto it:node->neighbors){
             if(visited[it->val]==NULL){
                 Node* newnode=new Node(it->val);
                 copy->neighbors.push_back(newnode);
                 dfs(it,newnode,visited);
             }else{
-                       copy->neighbors.push_back(visited[it->val]);
-            }     
+                copy->neighbors.push_back(visited[it->val]);
+            }
         }
         return copy;
     }
