@@ -1,18 +1,32 @@
 class KthLargest {
 public:
     priority_queue<int,vector<int>,greater<int>>q;
-    int size;
+int index;
     KthLargest(int k, vector<int>& nums) {
-        size=k;
+        index=k;
         for(int i=0;i<nums.size();i++){
-            q.push(nums[i]);
-            if(q.size()>size)q.pop();
+            if(q.size()<k){
+                q.push(nums[i]);
+            }else{
+                if(q.top()<nums[i]){
+                    q.pop();
+                    q.push(nums[i]);
+                }
+            }
         }
     }
     
     int add(int val) {
-        q.push(val);
-        if(q.size()>size)q.pop();
+      
+             if(q.size()<index){
+                q.push(val);
+            }else{
+                if(q.top()<val){
+                    q.pop();
+                    q.push(val);
+                }
+            }
+       
         return q.top();
     }
 };
