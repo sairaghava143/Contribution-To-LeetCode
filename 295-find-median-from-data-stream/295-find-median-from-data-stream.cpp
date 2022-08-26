@@ -7,51 +7,55 @@ public:
     }
     
     void addNum(int num) {
-        int lsize=maxheap.size();
-        int rsize=minheap.size();
-        if(lsize==0){
+        int maxsize=maxheap.size();
+        int minsize=minheap.size();
+        if(maxsize==0){
             maxheap.push(num);
-        }else if(lsize==rsize){
+        }else if(maxsize==minsize){
             if(num<minheap.top()){
                 maxheap.push(num);
             }else{
                 int temp=minheap.top();
                 minheap.pop();
-                minheap.push(num);
                 maxheap.push(temp);
+                minheap.push(num);
             }
-        }else{
-            if(rsize==0){
+        }
+        else{
+            if(minsize==0){
                 if(num>maxheap.top()){
                     minheap.push(num);
                 }else{
                     int temp=maxheap.top();
-                    maxheap.pop();
-                    maxheap.push(num);
-                    minheap.push(temp);
+                maxheap.pop();
+                maxheap.push(num);
+                minheap.push(temp);
                 }
-            }else if(num>=minheap.top()){
+            
+            }
+            else if(num>=minheap.top()){
                 minheap.push(num);
-            }else{
+            }
+            else{
                 if(num<maxheap.top()){
                     int temp=maxheap.top();
                     maxheap.pop();
-                    maxheap.push(num);
                     minheap.push(temp);
+                    maxheap.push(num);
                 }else{
                     minheap.push(num);
                 }
+               
             }
         }
+
     }
     
     double findMedian() {
-        int lsize=maxheap.size();
-        int rsize=minheap.size();
-        if(lsize>rsize){
-            return maxheap.top();
-        }
-        return (maxheap.top()+minheap.top())/2.0;
+        int maxsize=maxheap.size();
+        int minsize=minheap.size();
+        if(maxsize>minsize)return maxheap.top();
+        return (minheap.top()+maxheap.top())/2.0;
     }
 };
 
