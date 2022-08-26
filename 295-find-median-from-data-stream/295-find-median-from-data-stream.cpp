@@ -11,51 +11,48 @@ public:
         int minsize=minheap.size();
         if(maxsize==0){
             maxheap.push(num);
+            
         }else if(maxsize==minsize){
             if(num<minheap.top()){
                 maxheap.push(num);
             }else{
-                int temp=minheap.top();
+               int temp=minheap.top();
                 minheap.pop();
-                maxheap.push(temp);
                 minheap.push(num);
+                maxheap.push(temp);
             }
-        }
-        else{
+        }else{
             if(minsize==0){
                 if(num>maxheap.top()){
                     minheap.push(num);
                 }else{
                     int temp=maxheap.top();
-                maxheap.pop();
-                maxheap.push(num);
-                minheap.push(temp);
-                }
-            
-            }
-            else if(num>=minheap.top()){
-                minheap.push(num);
-            }
-            else{
-                if(num<maxheap.top()){
-                    int temp=maxheap.top();
                     maxheap.pop();
-                    minheap.push(temp);
                     maxheap.push(num);
-                }else{
-                    minheap.push(num);
+                    minheap.push(temp);
                 }
-               
+            }else if(num>=minheap.top()){
+                minheap.push(num);
+            }else{
+              if(num<maxheap.top()){
+                  int temp=maxheap.top();
+                  maxheap.pop();
+                  maxheap.push(num);
+                  minheap.push(temp);
+              }else{
+                  minheap.push(num);
+              }
             }
         }
-
     }
     
     double findMedian() {
         int maxsize=maxheap.size();
         int minsize=minheap.size();
-        if(maxsize>minsize)return maxheap.top();
-        return (minheap.top()+maxheap.top())/2.0;
+        if(maxsize>minsize){
+            return maxheap.top();
+        }
+        return (maxheap.top()+minheap.top())/2.0;
     }
 };
 
