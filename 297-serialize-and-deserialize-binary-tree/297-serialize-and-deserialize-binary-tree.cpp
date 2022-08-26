@@ -21,7 +21,7 @@ public:
             auto node=q.front();
             q.pop();
             if(node==NULL){
-                s.append("#,");
+                s+={'#',','};
             }else{
                 s+=to_string(node->val)+(',');
             }
