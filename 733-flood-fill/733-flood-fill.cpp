@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void helper(vector<vector<int>>& image, int i, int j,int n,int m, int color,int val){
+    void helper(vector<vector<int>>& image, int i, int j,int &n,int &m, int &color,int &val){
         if(i<0 || j<0 || i>=n || j>=m || image[i][j]!=val || image[i][j]==color){
             return;
         }
