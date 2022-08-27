@@ -5,8 +5,7 @@ public:
         bool ans = true;
         for(auto &x : graph[i]){
             if(!visited[x]){
-               ans = ans && dfs(graph,visited,x,3-colour);
-                
+             ans =ans && dfs(graph,visited,x,3-colour);     
             }
             else if(visited[x] == visited[i]){
               return false;  
