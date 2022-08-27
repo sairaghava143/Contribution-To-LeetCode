@@ -1,8 +1,6 @@
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        //topological sort
-        //create graph
         unordered_map<int,vector<int>>graph;
         vector<int>indegree(numCourses,0);
         for(int i=0;i<prerequisites.size();i++){
@@ -11,27 +9,26 @@ public:
             graph[bi].push_back(ai);
             indegree[ai]++;
         }
-        
         queue<int>q;
+        int count=0;
         for(int i=0;i<numCourses;i++){
             if(indegree[i]==0){
                 q.push(i);
             }
+            
         }
-        int count=0;
         while(!q.empty()){
-            int node=q.front();
+            int index=q.front();
             q.pop();
             count++;
-            vector<int>children=graph[node];
+            vector<int>children=graph[index];
             for(auto it:children){
                 indegree[it]--;
                 if(indegree[it]==0){
-                    q.push(it);;
+                    q.push(it);
                 }
             }
         }
         return count==numCourses;
-        
     }
 };
