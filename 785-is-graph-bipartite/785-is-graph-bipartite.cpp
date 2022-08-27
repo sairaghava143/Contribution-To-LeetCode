@@ -20,7 +20,7 @@ public:
         for(int i=0;i<n;i++){
             if(!v[i]){
                             flag=flag && dfs(graph,v,i,1);
-
+if(!flag)return flag;
             }
         }
         return flag;
