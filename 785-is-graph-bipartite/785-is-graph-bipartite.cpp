@@ -6,6 +6,7 @@ public:
         for(auto &it:graph[i]){
             if(!v[it]){
                 flag=flag&&dfs(graph,v,it,3-color);
+                if(!flag)return flag;
             }else if(v[it]==v[i]){
                     return false;
                 }
