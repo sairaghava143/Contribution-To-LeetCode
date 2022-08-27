@@ -1,34 +1,14 @@
 class Solution {
 public:
-    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        unordered_map<int,vector<int>>graph;
-        vector<int>indegree(numCourses,0);
-        for(int i=0;i<prerequisites.size();i++){
-            int ai=prerequisites[i][0];
-            int bi=prerequisites[i][1];
-            graph[bi].push_back(ai);
-            indegree[ai]++;
-        }
-        queue<int>q;
-        int count=0;
-        for(int i=0;i<numCourses;i++){
-            if(indegree[i]==0){
-                q.push(i);
-            }
-            
-        }
-        while(!q.empty()){
-            int index=q.front();
-            q.pop();
-            count++;
-            vector<int>children=graph[index];
-            for(auto it:children){
-                indegree[it]--;
-                if(indegree[it]==0){
-                    q.push(it);
-                }
-            }
-        }
-        return count==numCourses;
+     bool canFinish(int n, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> G(n);
+        vector<int> degree(n, 0), bfs;
+        for (auto& e : prerequisites)
+            G[e[1]].push_back(e[0]), degree[e[0]]++;
+        for (int i = 0; i < n; ++i) if (!degree[i]) bfs.push_back(i);
+        for (int i = 0; i < bfs.size(); ++i)
+            for (int j: G[bfs[i]])
+                if (--degree[j] == 0) bfs.push_back(j);
+        return bfs.size() == n;
     }
 };
