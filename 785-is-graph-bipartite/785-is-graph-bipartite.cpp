@@ -2,18 +2,17 @@ class Solution {
 public:
     bool dfs(vector<vector<int>> &graph,vector<int> &visited,int i,int colour){
         visited[i] = colour;
+        bool ans = true;
         for(auto &x : graph[i]){
             if(!visited[x]){
-               int  y = dfs(graph,visited,x,3-colour);
-                if(y==false){
-                    return false;
-                }
+               ans = ans && dfs(graph,visited,x,3-colour);
+                
             }
             else if(visited[x] == visited[i]){
               return false;  
             }
         }
-        return true;
+        return ans;
     }
     
     bool isBipartite(vector<vector<int>>& graph) {
