@@ -1,24 +1,31 @@
 class Solution {
 public:
-    void subset(vector<vector<int>>&ans,vector<int>temp,int index,vector<int> arr, int target){
-        if(target==0){
-            ans.push_back(temp);
+    void solve(int index,vector<vector<int>>&ans,vector<int>v,int n,vector<int>&c,int t){
+      
+            if(t==0){
+                ans.push_back(v);
+
+            }
+        
+        for(int i=index;i<n;i++){
+            if(i!=index && c[i]==c[i-1])continue;
+            if(c[i]>t)continue;
+    
+            v.push_back(c[i]);
+            solve(i+1,ans,v,n,c,t-c[i]);
+            v.pop_back();
+
         }
         
-        for(int i=index;i<arr.size();i++){
-            if(i!=index && arr[i]==arr[i-1])continue;
-            if(arr[i]>target)continue;
-            temp.push_back(arr[i]);
-            subset(ans,temp,i+1,arr,target-arr[i]);
-            temp.pop_back();
-        }
 
     }
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+    vector<vector<int>> combinationSum2(vector<int>& c, int t) {
         vector<vector<int>>ans;
-        vector<int>temp;
-        sort(candidates.begin(),candidates.end());
-        subset(ans,temp,0,candidates,target);
+        vector<int>v;
+        int index=0;
+        int n=c.size();
+        sort(c.begin(),c.end());
+        solve(index,ans,v,n,c,t);
         return ans;
     }
 };
