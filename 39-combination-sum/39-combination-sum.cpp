@@ -1,23 +1,43 @@
 class Solution {
 public:
-    void subset(vector<vector<int>>&ans,vector<int>temp,int index,int target,vector<int> arr){
-        if(index==arr.size()){
+    void helper(vector<vector<int>>&ans, int target,vector<int>& candidates,vector<int>v,int &n,int index){
+        if(index>=n){
             if(target==0){
-                ans.push_back(temp);
+                
+                            ans.push_back(v);
+
             }
+            
             return;
         }
-        if(arr[index]<=target){
-            temp.push_back(arr[index]);
-            subset(ans,temp,index,target-arr[index],arr);
-            temp.pop_back();
+
+        if(candidates[index]<=target){
+        
+
+        v.push_back(candidates[index]);
+        helper(ans,target-candidates[index],candidates,v,n,index);
+
+                   v.pop_back();
+
+
         }
-        subset(ans,temp,index+1,target,arr);
+             
+                helper(ans,target,candidates,v,n,index+1);
+
+        
+
+        
     }
+    
+    
+    
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>>ans;
-        vector<int>temp;
-        subset(ans,temp,0,target,candidates);
+        vector<int>v;
+        int index=0;
+        int n=candidates.size();
+        int sum=0;
+        helper(ans,target,candidates,v,n,index);
         return ans;
     }
 };
