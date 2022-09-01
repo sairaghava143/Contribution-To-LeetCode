@@ -1,10 +1,8 @@
 class Solution {
 public:
     void solve(int index,int &n,vector<int>v,vector<vector<int>>&ans,vector<int>&nums){
-        // if(index>=n){
-        //     return;
-        // }
-                    ans.push_back(v);
+      
+             ans.push_back(v);
 
         
         for(int i=index;i<n;i++){
@@ -13,7 +11,7 @@ public:
               solve(i+1,n,v,ans,nums);
               v.pop_back();
         }
-     // solve(index+1,n,v,ans,nums);
+  
 
         
       
