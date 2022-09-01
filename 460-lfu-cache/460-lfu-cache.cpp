@@ -1,59 +1,68 @@
-class LFUCache {
-    int cap;
-    int size;
-    int minFreq;
-    unordered_map<int, pair<int, int>> m; //key to {value,freq};
-    unordered_map<int, list<int>::iterator> mIter; //key to list iterator;
-    unordered_map<int, list<int>>  fm;  //freq to key list;
-public:
-    LFUCache(int capacity) {
-        cap=capacity;
-        size=0;
+class LFUCache
+{
+    public:
+
+        unordered_map<int, list<pair<int, int>>> lst_map;	//will store frequency as key and list of all<key,value > with that frequency
+    unordered_map<int, list<pair<int, int>>::iterator > key_map;	//will store key and it's respective address
+    unordered_map<int, int> frequency_map;	//will store key and it's frequency
+    int cap = 0, size = 0, min_frequency = 0;
+
+    LFUCache(int capacity)
+    {
+        cap = capacity;
     }
-    
-    int get(int key) {
-        if(m.count(key)==0) return -1;
-        
-        fm[m[key].second].erase(mIter[key]);
-        m[key].second++;
-        fm[m[key].second].push_back(key);
-        mIter[key]=--fm[m[key].second].end();
-        
-        if(fm[minFreq].size()==0 ) 
-              minFreq++;
-        
-        return m[key].first;
-    }
-    
-   void put(int key, int value) {
-        if(cap<=0) return;
-        
-        int storedValue=get(key);
-        if(storedValue!=-1)
+
+    int get(int key)
+    {
+
+        auto found = key_map.find(key);
+        if (found == key_map.end())
+            return -1;
+        else
         {
-            m[key].first=value;
-            return;
+            auto temp = found->second->second;
+            put(key, temp);
+            return temp;
         }
-        
-        if(size>=cap )
+    };
+
+    void put(int key, int value)
+    {
+
+        auto found = key_map.find(key);
+        if (found == key_map.end())
         {
-            m.erase( fm[minFreq].front() );
-            mIter.erase( fm[minFreq].front() );
-            fm[minFreq].pop_front();
-            size--;
+            if (cap != 0)
+            {
+                if (size >= cap)
+                {
+                	//removing page
+                    auto temp = lst_map[min_frequency].back();	//making copy of popped element
+                    lst_map[min_frequency].pop_back();	//popping it out
+                    key_map.erase(temp.first);	//popping from key_map
+                    frequency_map.erase(temp.first);	//popping from frequency_map;
+                   	// done removing
+                }
+                else
+                    size++;
+                lst_map[1].emplace_front(make_pair(key, value));	// adding node in list
+                min_frequency = 1;
+                key_map[key] = lst_map[1].begin();	// adding new key iterator pair in key map
+                frequency_map[key] = 1;
+            }
         }
-        
-        m[key]={value, 1};
-        fm[1].push_back(key);
-        mIter[key]=--fm[1].end();
-        minFreq=1;
-        size++;
+        else
+        {
+            auto frequency = frequency_map[key];
+            lst_map[frequency].erase(found->second);	//removed from old list
+            if (lst_map[frequency].size() == 0)	//in case list becomes empty it might change min_frequency
+            {
+                if (min_frequency == frequency)
+                    min_frequency++;
+            }
+            lst_map[++frequency].emplace_front(key, value);	//added in new list
+            key_map[key] = lst_map[frequency].begin();	//updated in keymap
+            frequency_map[key] = frequency;
+        }
     }
 };
-
-/**
- * Your LFUCache object will be instantiated and called as such:
- * LFUCache* obj = new LFUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
