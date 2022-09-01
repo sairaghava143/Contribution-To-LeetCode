@@ -6,7 +6,7 @@ public:
             return;
         }
         
-        for(int i=index;i<n;i++){
+        for(int i=0;i<n;i++){
             if(!temp[i]){
                 temp[i]=1;
                 v.push_back(nums[i]);
