@@ -29,8 +29,8 @@ class Solution
 
     bool hasPathSum(TreeNode *root, int targetSum)
     {
-        // if (root == NULL) return false;
-        int sum = 0;
+      
+        int sum=0;
 
         if (solve(root, targetSum, sum)) return true;
 
