@@ -1,13 +1,14 @@
 class Solution {
 public:
     int titleToNumber(string s) {
-        int temp=0;
-        
-        for( char &c:s){
-            int n=int(c-'A'+1);
+        long long pow=1;
+        int ans=0;
+        int n=s.size();
+        for(int i=n-1;i>=0;i--){
+            ans+=int(s[i]-'A'+1)*pow;
             
-            temp=temp*26+n;
+            pow*=26;
         }
-        return temp;
+        return ans;
     }
 };
