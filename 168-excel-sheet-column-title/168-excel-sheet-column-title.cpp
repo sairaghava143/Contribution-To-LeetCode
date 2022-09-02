@@ -4,10 +4,8 @@ public:
         if(n==0){
             return "";
         }
-                n--;
-
-       string ans= convertToTitle(n/26)+char('A'+n%26);
+          
         
-        return ans;
+        return convertToTitle(--n/26)+char('A'+n%26);
     }
 };
