@@ -1,19 +1,15 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        unordered_map<char,char>m;
-        unordered_set<char>st;
+        vector<int>v1(256,0),v2(256,0);
         int n=s.size();
         for(int i=0;i<n;i++){
-            if(!m.count(s[i]) && !st.count(t[i])){
-                m[s[i]]=t[i];
-                st.insert(t[i]);
-            }else if(!m.count(s[i]) && st.count(t[i])){
-                return false;
-            }else if(m[s[i]]!=t[i]){
-                return false;
-            }
+            if(v1[s[i]]!=v2[t[i]])return false;
+            v1[s[i]]=i+1;
+            v2[t[i]]=i+1;
         }
         return true;
+        
+        
     }
 };
