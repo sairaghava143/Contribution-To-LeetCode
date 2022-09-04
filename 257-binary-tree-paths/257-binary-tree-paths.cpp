@@ -24,6 +24,7 @@ public:
         
     }
     vector<string> binaryTreePaths(TreeNode* root) {
+        if(root==NULL)return {};
         vector<string>v;
         string s="";
         solve(root,v,s);
