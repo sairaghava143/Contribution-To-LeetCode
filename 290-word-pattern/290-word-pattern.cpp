@@ -7,11 +7,12 @@ public:
         string word;
         int i=0;
         int n=pattern.size();
-        while(ss>>word){
-            if(i>=n || m1[pattern[i]]!=m2[word])return false;
-            m1[pattern[i]]=m2[word]=i+1;
-            i++;
-        }
+      for(word;ss>>word;i++){
+          if(i==n || m1[pattern[i]]!=m2[word]){
+              return false;
+          }
+          m1[pattern[i]]=m2[word]=i+1;
+      }
         return i==n;
             
     }
