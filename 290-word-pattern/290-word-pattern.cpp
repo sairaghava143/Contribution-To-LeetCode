@@ -5,7 +5,7 @@ public:
     unordered_map<string, int> w2i;
     istringstream in(str);
     int i = 0, n = pattern.size();
-    for (string word; in >> word; ++i) {
+    for (string word; in >> word; i++) {
         if (i == n || p2i[pattern[i]] != w2i[word])
             return false;
         p2i[pattern[i]] = w2i[word] = i + 1;
