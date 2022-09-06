@@ -7,8 +7,8 @@ public:
     
     int sumRange(int left, int right) {
         int sum=0;
-        for(int i=left;i<=right;i++){
-            sum+=s[i];
+        while(left<=right){
+            sum+=s[left++];
         }
         return sum;
     }
