@@ -1,9 +1,9 @@
 class Solution {
 public:
     bool isPowerOfTwo(int n) {
-        if(n<=0)return false;
-        bitset<32>s(n);
-        
-        return s.count()==1;
+
+       // int x=pow(2,floor(log(INT_MAX)/log(2)));
+       //  cout<<x;
+        return n>0 && 1073741824%n==0;
     }
 };
