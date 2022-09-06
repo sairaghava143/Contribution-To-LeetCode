@@ -1,10 +1,8 @@
 class Solution {
 public:
     bool isPowerOfThree(int n) {
-        if(n<=0)return false;
-while(n%3==0){
-    n/=3;
-}
-        return n==1;
+             // int x=pow(3,floor(log(INT_MAX)/log(3)));
+       //  cout<<x;
+        return n>0 && 1162261467%n==0;
     }
 };
