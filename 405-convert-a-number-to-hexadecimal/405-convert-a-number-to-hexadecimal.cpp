@@ -2,8 +2,7 @@ class Solution {
 public:
     string toHex(int num) {
         stringstream ss;
-        ss<<std::hex<<num;
-        cout<<std::hex<<num;
+        ss<<hex<<num;
         string word;
         ss>>word;
         return word;
