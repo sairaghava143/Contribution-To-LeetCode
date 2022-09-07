@@ -1,7 +1,9 @@
 class Solution {
 public:
     bool isPerfectSquare(int num) {
-      double y=sqrt(num);
-        return y==int(y);
+     for(long long i=1;i<=num;i++){
+         if(i*i==num)return true;
+     }
+        return false;
     }
 };
