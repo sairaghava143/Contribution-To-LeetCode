@@ -6,12 +6,13 @@ public:
         int st=0,e=s.size()-1;
     
         while(1){
-            while(st<e && !vowel.count(tolower(s[st]))){
+            while(st<e && !vowel.count(s[st])){
                 st++;
             }
-             while(st<e && !vowel.count(tolower(s[e]))){
+            while(st<e && !vowel.count(s[e])){
                 e--;
             }
+
             if(e<=st){
               return s;
 
