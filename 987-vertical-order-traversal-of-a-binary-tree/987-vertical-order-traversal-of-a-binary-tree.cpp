@@ -11,13 +11,13 @@
  */
 class Solution {
 public:
-    map<int,map<int,multiset<int>>>m;
-    void solve(TreeNode* root,int col,int row){
-        if(root==NULL)return ;
-        m[col][row].insert(root->val);
-        solve(root->left,col-1,row+1);
-        solve(root->right,col+1,row+1);
-    }
+    // map<int,map<int,multiset<int>>>m;
+    // void solve(TreeNode* root,int col,int row){
+    //     if(root==NULL)return ;
+    //     m[col][row].insert(root->val);
+    //     solve(root->left,col-1,row+1);
+    //     solve(root->right,col+1,row+1);
+    // }
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         //bfs
         map<int,vector<int>>m;
