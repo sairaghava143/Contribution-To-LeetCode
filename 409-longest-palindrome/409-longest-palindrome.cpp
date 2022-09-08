@@ -6,7 +6,10 @@ public:
             odds+=count(s.begin(),s.end(),c)&1;
         }
  
-        return s.size()-odds+(odds>0);
+       int n=s.size();
+        n-=odds;
+        if(odds>0)n++;
+        return n;
         
 
     }
