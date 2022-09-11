@@ -1,7 +1,7 @@
 class Solution {
 public:
     int uniqueMorseRepresentations(vector<string>& words) {
-        set<string>s;
+      unordered_set<string>s;
         vector<string>v={".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
    
        
