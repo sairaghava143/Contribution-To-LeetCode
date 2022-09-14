@@ -1,36 +1,21 @@
 class Solution {
 public:
     string licenseKeyFormatting(string s, int k) {
-        int count=0;
-        string temp;
-        int n=s.size();
-        for(int i=0;i<n;i++){
-            if(s[i]!='-'){
-                count++;
-                temp+=toupper(s[i]);
-            }
-        
-        }
-        if(count==0)return "";
-        int y=count%k;
-        int i=0;
         string ans;
-        while(i<y){
-            ans+=temp[i++];
-        }
-        if(ans.size())ans+='-';
-        int z=temp.size();
-        int u=0;
-        while(i<z){
-            ans+=temp[i++];
-            u++;
-            if(u>=k){
-                u=0;
-                ans+='-';
+        int n=s.size();
+        int count=0;
+        for(int i=n-1;i>=0;i--){
+            if(s[i]!='-'){
+                 if(count>=k){
+                    count=0;
+                    ans+='-';
+                }
+                count++;
+                ans+=toupper(s[i]);
+               
             }
         }
-        
-        ans.pop_back();
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
