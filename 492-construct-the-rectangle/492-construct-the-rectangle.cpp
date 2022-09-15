@@ -10,6 +10,8 @@ public:
                 if(i*j==area){
                   if(l>i && w>j){
                     l=i,w=j;
+        return {int(l),int(w)};
+
                 }   
                 }
                
