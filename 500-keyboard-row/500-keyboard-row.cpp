@@ -7,33 +7,26 @@ vector<string>v;
         for(auto it:s1)m1[tolower(it)]++;
         for(auto it:s2)m2[tolower(it)]++;
         for(auto it:s3)m3[tolower(it)]++;
-        bool check=false,check2=false,check3=false;
+        bool check1=false,check2=false,check3=false;
         for(auto it:words){
             for(auto it2:it){
-                if(!m1.count(tolower(it2)))check=true;
+                if(!m1.count(tolower(it2)))check1=true;
             }
-            if(!check)v.push_back(it);
-            check=false;
+            if(!check1)v.push_back(it);
+            check1=false;
+             for(auto it2:it){
+                if(!m2.count(tolower(it2)))check2=true;
+            }
+            if(!check2)v.push_back(it);
+            check2=false;
+             for(auto it2:it){
+                if(!m3.count(tolower(it2)))check3=true;
+            }
+            if(!check3)v.push_back(it);
+            check3=false;
             
         }
-         check=false;
-        for(auto it:words){
-            for(auto it2:it){
-                if(!m2.count(tolower(it2)))check=true;
-            }
-            if(!check)v.push_back(it);
-            check=false;
-
-        }
-         check=false;
-        for(auto it:words){
-            for(auto it2:it){
-                if(!m3.count(tolower(it2)))check=true;
-            }
-            if(!check)v.push_back(it);
-            check=false;
-
-        }
+         
 return v;
         
     }
