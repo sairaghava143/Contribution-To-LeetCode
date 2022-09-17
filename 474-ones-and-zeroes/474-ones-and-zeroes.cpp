@@ -15,7 +15,7 @@ public:
     }
     int findMaxForm(vector<string>& strs, int m, int n) {
         int s=strs.size();
-        vector<vector<vector<int>>>dp(s+1,vector<vector<int>>(m+1,vector<int>(n+1)));
+        vector<vector<vector<int>>>dp(s+1,vector<vector<int>>(m+1,vector<int>(n+1,0)));
         // return findmax(strs,m,n,0,s,dp);
         
         for(int i=1;i<=s;i++){
