@@ -15,7 +15,24 @@ public:
     }
     int findMaxForm(vector<string>& strs, int m, int n) {
         int s=strs.size();
-        vector<vector<vector<int>>>dp(m+1,vector<vector<int>>(n+1,vector<int>(s+1,-1)));
-        return findmax(strs,m,n,0,s,dp);
+        vector<vector<vector<int>>>dp(s+1,vector<vector<int>>(m+1,vector<int>(n+1)));
+        // return findmax(strs,m,n,0,s,dp);
+        
+        for(int i=1;i<=s;i++){
+            for(int j=0;j<=m;j++){
+                for(int k=0;k<=n;k++){
+                    int countzeros=count(strs[i-1].begin(),strs[i-1].end(),'0');
+                     int countones=strs[i-1].size()-countzeros;
+                    if(j-countzeros>=0 && k-countones>=0){
+  dp[i][j][k]=max(1+dp[i-1][j-countzeros][k-countones],dp[i-1][j][k]);
+                    }else{
+                        dp[i][j][k]=dp[i-1][j][k];
+                    }
+                  
+                }
+            }
+        }
+        
+return dp[s][m][n];
     }
 };
