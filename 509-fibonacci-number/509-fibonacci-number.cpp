@@ -2,12 +2,12 @@ class Solution {
 public:
     int fib(int n) {
         if(n<2)return n;
-     vector<int>v(n+1,0);
-        v[0]=0,v[1]=1;
+        int a=0,b=1,c=2;
         for(int i=2;i<=n;i++){
-            v[i]=v[i-1]+v[i-2];
+            c=a+b;
+            a=b;
+            b=c;
         }
-    
-        return v[n];
+        return c;
     }
 };
