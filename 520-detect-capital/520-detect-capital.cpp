@@ -8,7 +8,8 @@ public:
             if(word[i]>='A' && word[i]<='Z')count1++;
             if(word[i]>='a' && word[i]<='z')count2++;
             if((word[i]>='A' && word[i]<='Z' && !check)||(word[i]>='a' && word[i]<='z') ){count3++;check=true;}
-            if(!(count1==i+1 || count2==i+1 || count3==i+1))return false;
+            // if(!(count1==i+1 || count2==i+1 || count3==i+1))return false;
+            
         }
         if(count1==word.size())return true;
         if(count2==word.size())return true;
