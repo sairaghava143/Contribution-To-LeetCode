@@ -22,13 +22,20 @@ public:
         vector<int>v;
         help(root,ans,v);
         int n=v.size();
-        for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
-            if(i!=j){
-                ans=min(ans,abs(v[i]-v[j]));
-            }
+        // for(int i=0;i<n;i++){
+        // for(int j=0;j<n;j++){
+        //     if(i!=j){
+        //         ans=min(ans,abs(v[i]-v[j]));
+        //     }
+        // }
+        // }
+  
+        for(int j=1;j<n;j++){
+     
+                ans=min(ans,abs(v[j]-v[j-1]));
+            
         }
-        }
+        
         return ans;
     }
 };
