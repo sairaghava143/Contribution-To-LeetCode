@@ -17,26 +17,17 @@ public:
        
       return  help1(root->left)+ help1(root->right)+root->val;
     }
-    void help(TreeNode* root){
-        if(!root)return;
-        int left=0,right=0;
-        left=help1(root->left);
-right=        help1(root->right);
-        root->val=abs(left-right);
-        help(root->left);
-        help(root->right);
+    int help(TreeNode* root){
+        if(!root)return 0;
+        root->val=abs(help1(root->left)-help1(root->right));
+       
+      return  help(root->left)+ help(root->right)+root->val;
 
     }
-    void help3(TreeNode* root,int &ans){
-        if(!root)return;
-        ans+=root->val;
-        help3(root->left,ans);
-        help3(root->right,ans);
-    }
     int findTilt(TreeNode* root) {
-        help(root);
-        int ans=0;
-        help3(root,ans);
-        return ans;
+   
+     
+        
+        return help(root);
     }
 };
