@@ -11,17 +11,17 @@
  */
 class Solution {
 public:
-    void help1(TreeNode* root,int &sum){
-        if(!root)return;
-        sum+=root->val;
-        help1(root->left,sum);
-        help1(root->right,sum);
+    int help1(TreeNode* root){
+        if(!root)return 0;
+    
+       
+      return  help1(root->left)+ help1(root->right)+root->val;
     }
     void help(TreeNode* root){
         if(!root)return;
         int left=0,right=0;
-        help1(root->left,left);
-        help1(root->right,right);
+        left=help1(root->left);
+right=        help1(root->right);
         root->val=abs(left-right);
         help(root->left);
         help(root->right);
