@@ -9,6 +9,6 @@ public:
             while(j>=0 && nums[j]<=nums[i])j--;
             swap(nums[i],nums[j]);
         }
-        reverse(nums.begin()+i+1,nums.end());
+        std::next_permutation(nums.begin()+i+1,nums.end());
     }
 };
