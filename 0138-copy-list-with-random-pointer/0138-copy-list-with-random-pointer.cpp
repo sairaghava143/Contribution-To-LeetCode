@@ -17,50 +17,41 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        //time O(n)  space O(n)
-        // unordered_map<Node*,Node*>m;
-        // Node *ptr=head;
-        // while(ptr){
-        //     m[ptr]=new Node(ptr->val);
-        //     ptr=ptr->next;
-        // }
-        // ptr=head;
-        // while(ptr){
-        //     m[ptr]->next=m[ptr->next];
-        //     m[ptr]->random=m[ptr->random];
-        //     ptr=ptr->next;
-        // }
-        // return m[head];
-        
-        
-          //time O(n)  space O(1)
-        //https://leetcode.com/problems/copy-list-with-random-pointer/discuss/1059181/C%2B%2B-or-Three-Pass-or-O(n)-0ms-Beats-100-or-Explanation-(with-example)
-        Node *node=head;
-        while(node){
-            Node *temp=node->next;
-            node->next=new Node(node->val);
-            node->next->next=temp;
-            node=temp;
-        }
-        node =head;
-        while(node){
-            if(node->random){
-                node->next->random=node->random->next;
-            }
-            node=node->next->next;
-        }
-        
-        Node *ans=new Node(0);
-        Node *temp=ans;
-      
-        node=head;
-        while(node){
-            temp->next=node->next;
-            temp=temp->next;
-            
-            node->next=node->next->next;
-            node=node->next;
-        }
-        return ans->next;
+    // Step 1: Create a new node for each node in the original list and insert it in between the corresponding nodes
+    Node* node = head;
+    while (node) {
+        Node* temp = node->next;
+        node->next = new Node(node->val);
+        node->next->next = temp;
+        node = temp;
     }
+
+    // Step 2: Copy the random pointers of the original nodes to the new nodes
+    node = head;
+    while (node) {
+        if (node->random) {
+            node->next->random = node->random->next;
+        }
+        node = node->next->next;
+    }
+
+    // Step 3: Separate the original list and the copied list
+    Node* copiedHead = nullptr;
+    Node* copiedTail = nullptr;
+    node = head;
+    while (node) {
+        if (!copiedHead) {
+            copiedHead = node->next;
+            copiedTail = node->next;
+        } else {
+            copiedTail->next = node->next;
+            copiedTail = copiedTail->next;
+        }
+        node->next = node->next->next;
+        node = node->next;
+    }
+
+    return copiedHead;
+}
+
 };
