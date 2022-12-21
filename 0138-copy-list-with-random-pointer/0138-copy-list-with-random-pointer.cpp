@@ -16,42 +16,47 @@ public:
 
 class Solution {
 public:
-    Node* copyRandomList(Node* head) {
-    // Step 1: Create a new node for each node in the original list and insert it in between the corresponding nodes
+  
+        Node* copyRandomList(Node* head) {
+    // Create a map that stores the mapping between the original nodes and the copied nodes
+    unordered_map<Node*, Node*> map;
+
+    // Create a dummy node to serve as the head of the copied list
+    Node* copiedHead = new Node(INT_MIN);
+    Node* copiedTail = copiedHead;
+
+    // Iterate through the original list and create a new node for each node
     Node* node = head;
     while (node) {
-        Node* temp = node->next;
-        node->next = new Node(node->val);
-        node->next->next = temp;
-        node = temp;
-    }
+        // Check if the current node has already been copied
+        auto it = map.find(node);
+        if (it == map.end()) {
+            // If the current node has not been copied, create a new node and add it to the map
+            map[node] = new Node(node->val);
+        }
+        // Append the copied node to the copied list
+        copiedTail->next = map[node];
+        copiedTail = copiedTail->next;
 
-    // Step 2: Copy the random pointers of the original nodes to the new nodes
-    node = head;
-    while (node) {
+        // Check if the random pointer of the current node has already been copied
         if (node->random) {
-            node->next->random = node->random->next;
+            auto it = map.find(node->random);
+            if (it == map.end()) {
+                // If the random pointer has not been copied, create a new node and add it to the map
+                map[node->random] = new Node(node->random->val);
+            }
+            // Set the random pointer of the copied node to the copied random node
+            copiedTail->random = map[node->random];
         }
-        node = node->next->next;
-    }
-
-    // Step 3: Separate the original list and the copied list
-    Node* copiedHead = nullptr;
-    Node* copiedTail = nullptr;
-    node = head;
-    while (node) {
-        if (!copiedHead) {
-            copiedHead = node->next;
-            copiedTail = node->next;
-        } else {
-            copiedTail->next = node->next;
-            copiedTail = copiedTail->next;
-        }
-        node->next = node->next->next;
+        // Move to the next node in the original list
         node = node->next;
     }
 
-    return copiedHead;
-}
+    // Remove the dummy node and return the head of the copied list
+    Node* result = copiedHead->next;
+    delete copiedHead;
+    return result;
 
+
+    }
 };
