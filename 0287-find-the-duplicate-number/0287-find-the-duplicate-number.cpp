@@ -1,18 +1,18 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        // linked list cycle algorithm
-        // time: O(n), space: O(1)
-        int slow = nums[0], fast = nums[0];
-        do {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-        } while (slow != fast);
-        slow = nums[0];
-        while (slow != fast) {
-            slow = nums[slow];
-            fast = nums[fast];
+        // binary search
+        // time: O(nlogn), space: O(1)
+        int left = 1, right = nums.size() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int count = 0;
+            for (int num : nums) {
+                if (num <= mid) ++count;
+            }
+            if (count > mid) right = mid;
+            else left = mid + 1;
         }
-        return slow;
+        return left;
     }
 };
