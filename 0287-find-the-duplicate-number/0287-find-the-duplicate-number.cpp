@@ -1,18 +1,18 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        // binary search
-        // time: O(nlogn), space: O(1)
-        int left = 1, right = nums.size() - 1;
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            int count = 0;
-            for (int num : nums) {
-                if (num <= mid) ++count;
-            }
-            if (count > mid) right = mid;
-            else left = mid + 1;
+        // Floyd's Tortoise and Hare algorithm
+        // time: O(n), space: O(1)
+        int tortoise = nums[0], hare = nums[0];
+        do {
+            tortoise = nums[tortoise];
+            hare = nums[nums[hare]];
+        } while (tortoise != hare);
+        tortoise = nums[0];
+        while (tortoise != hare) {
+            tortoise = nums[tortoise];
+            hare = nums[hare];
         }
-        return left;
+        return tortoise;
     }
 };
