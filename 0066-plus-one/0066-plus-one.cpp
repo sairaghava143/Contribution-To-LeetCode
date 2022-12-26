@@ -1,17 +1,24 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& a) {
+        int carry=1;
         int n=a.size();
         for(int i=n-1;i>=0;i--){
-            if(a[i]<9){
-            a[i]++;
-                return a;
-            }else{
-                a[i]=0;
-            }
+            a[i]+=carry;
+            carry=a[i]/10;
+            a[i]=a[i]%10;
         }
-        a.push_back(0);
-        a[0]=1;
+        cout<<carry;
+        if(carry){
+            a.push_back(0);
+            for(int i=n;i>=1;i--){
+                a[i]=a[i-1];
+                
+            }
+            a[0]=carry;
+            
+        
+    }
         return a;
     }
 };
