@@ -1,20 +1,23 @@
 class Solution {
 public:
     string reverseVowels(string s) {
-        vector<char> v;
-        for(int i=0;i<s.size();i++){
-            if(s[i]=='a' ||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'||s[i]=='A'||s[i]=='E'||s[i]=='I'||s[i]=='O'||s[i]=='U'){
-                v.push_back(s[i]);
+        //two pointer approach
+        
+        int start=0;
+        int end=s.size()-1;
+        string vowels="aeiouAEIOU";
+        while(start<end){
+            while(start<end && vowels.find(s[start])==string::npos){
+                start++;
             }
-        }
-    
-        for(int i=0;i<s.size();i++){
-            if(s[i]=='a' ||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'||s[i]=='A'||s[i]=='E'||s[i]=='I'||s[i]=='O'||s[i]=='U'){
-                s[i]=v.back();
-                v.pop_back();
+            while(start<end && vowels.find(s[end])==string::npos){
+                end--;
             }
+            
+            swap(s[start],s[end]);
+            start++;
+            end--;
         }
         return s;
-        
     }
 };
