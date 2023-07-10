@@ -26,7 +26,7 @@ public:
             {
                 zeores++;
             }
-            if(zeores>1){
+            while(zeores>1){
                 if(nums[j]==0)zeores--;
                 j++;
             }
