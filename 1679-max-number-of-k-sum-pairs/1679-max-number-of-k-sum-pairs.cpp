@@ -35,18 +35,18 @@ public:
         //using map
         int count=0;
         unordered_map<int,int>mp;
-        for(int i=0;i<nums.size();i++){
-            int diff=k-nums[i];
-            if(mp.count(diff) && mp[diff]>0){
-                count++;
-                mp[diff]--;
-                if(mp[diff]==0){
-                    mp.erase(diff);
-                }
-            }else{
-                mp[nums[i]]++;
-            }
+for(int i=0;i<nums.size();i++){
+    int diff=k-nums[i];
+    if(mp.count(diff) && mp[diff]>0){
+        count++;
+        mp[diff]--;
+        if(mp[diff]==0){
+            mp.erase(diff);
         }
+    }else{
+        mp[nums[i]]++;
+    }
+}
         return count;
         
 
