@@ -16,18 +16,35 @@ public:
         
         //sort and two pointers approach t= nlogn s=1
         
-        sort(nums.begin(),nums.end());
-        int i=0,j=nums.size()-1,count=0;
-        while(i<j){
-            int sum=nums[i]+nums[j];
-            if(sum==k){
-                count++;
-                i++,j--;
+//         sort(nums.begin(),nums.end());
+//         int i=0,j=nums.size()-1,count=0;
+//         while(i<j){
+//             int sum=nums[i]+nums[j];
+//             if(sum==k){
+//                 count++;
+//                 i++,j--;
                 
-            }else if(sum>k){
-                j--;
+//             }else if(sum>k){
+//                 j--;
+//             }else{
+//                 i++;
+//             }
+//         }
+//         return count;
+        
+        //using map
+        int count=0;
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++){
+            int diff=k-nums[i];
+            if(mp.count(diff) && mp[diff]>0){
+                count++;
+                mp[diff]--;
+                if(mp[diff]==0){
+                    mp.erase(diff);
+                }
             }else{
-                i++;
+                mp[nums[i]]++;
             }
         }
         return count;
