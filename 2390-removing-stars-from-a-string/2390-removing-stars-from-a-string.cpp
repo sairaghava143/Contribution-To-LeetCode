@@ -15,26 +15,41 @@ public:
 //         }
 //         return x;
         
-        stack<char>st;
+        //using stack
+//         stack<char>st;
         
-        int i=0,n=s.size();
+//         int i=0,n=s.size();
         
-        while(i<n){
+//         while(i<n){
+//             if(s[i]!='*'){
+//                 st.push(s[i]);
+//             }else{
+//                 st.pop();
+//             }
+//             i++;
+//         }
+//         string ans;
+//         while(!st.empty()){
+//             ans+=st.top();
+//             st.pop();
+//         }
+//         reverse(ans.begin(),ans.end());
+//         return ans;
+        
+        //using single pointer approach
+        
+        int insertindex=0;
+        for(int i=0;i<s.size();i++){
             if(s[i]!='*'){
-                st.push(s[i]);
+                s[insertindex]=s[i];
+                insertindex++;
             }else{
-                st.pop();
+                                insertindex--;
+
             }
-            i++;
+            
         }
-        string ans;
-        while(!st.empty()){
-            ans+=st.top();
-            st.pop();
-        }
-        reverse(ans.begin(),ans.end());
-        return ans;
-        
+        return s.substr(0,insertindex);
         
         
     }
