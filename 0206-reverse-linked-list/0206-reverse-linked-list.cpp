@@ -13,16 +13,32 @@ public:
     ListNode* reverseList(ListNode* head) {
         //reverse linked list
         
+//         ListNode *prev=NULL;
+//         ListNode *next=NULL;
+//         ListNode *curr=head;
+        
+//         while(curr){
+//             next=curr->next;
+//             curr->next=prev;
+//             prev=curr;
+//             curr=next;
+//         }
+//         return prev;
+        
+        //practice
+         
         ListNode *prev=NULL;
         ListNode *next=NULL;
-        ListNode *curr=head;
         
-        while(curr){
-            next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
+        while(head){
+            next=head->next;
+            head->next=prev;
+            prev=head;
+            head=next;
         }
+        return prev;
+        
+       
         return prev;
 
 
