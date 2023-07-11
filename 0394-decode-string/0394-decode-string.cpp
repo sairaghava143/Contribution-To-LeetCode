@@ -76,15 +76,15 @@ public:
             }
         }
         s = "";
-        string z;
+
         while (!st.empty())
         {
-            s = st.top() + s;
-            z+=st.top();
+            s += st.top();
+            
             st.pop();
         }
-        // cout<<z;
-        reverse(z.begin(),z.end());
-        return z;
+    
+        reverse(s.begin(),s.end());
+        return s;
     }
 };
