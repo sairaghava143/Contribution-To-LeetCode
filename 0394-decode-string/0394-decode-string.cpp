@@ -74,11 +74,15 @@ public:
             }
         }
         s = "";
+        string z;
         while (!st.empty())
         {
             s = st.top() + s;
+            z+=st.top();
             st.pop();
         }
-        return s;
+        // cout<<z;
+        reverse(z.begin(),z.end());
+        return z;
     }
 };
