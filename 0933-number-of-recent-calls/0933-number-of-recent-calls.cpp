@@ -1,24 +1,18 @@
-#include <queue>
-
 class RecentCounter {
-    std::queue<int> requests;
 public:
+            queue<int>q;
+
     RecentCounter() {
-        
     }
     
     int ping(int t) {
-        requests.push(t);
-        
-        // Remove the requests that are older than 3000 milliseconds
-        while (requests.front() < t - 3000) {
-            requests.pop();
+        q.push(t);
+        while(!q.empty() && q.front()<t-3000){
+            q.pop();
         }
-        
-        return requests.size();
+        return q.size();
     }
 };
-
 
 /**
  * Your RecentCounter object will be instantiated and called as such:
