@@ -10,28 +10,32 @@ public:
 
         for (int i = 0; i < a.size(); i++)
         {
-            if (s.empty() || (s.top() < 0 && a[i] > 0) ||(s.top() > 0 && a[i] > 0) || (s.top() < 0 && a[i] < 0))
+
+            bool flag = true;
+
+            while (!s.empty() && s.top() > 0 && a[i] < 0)
+            {
+
+                if (abs(s.top()) < abs(a[i]))
+                {
+                    s.pop();
+    
+                }
+                else if (abs(s.top()) == abs(a[i]))
+                {
+                    s.pop();
+                    flag = false;
+                    break;
+                }
+                else
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
             {
                 s.push(a[i]);
-            }
-            else
-            {
-                if (s.top() > 0 && a[i] < 0)
-                {
-                    if(!s.empty() && s.top() > 0 && a[i] < 0 ){
-                        if (abs(s.top()) < abs(a[i]))
-                        {
-                            s.pop();
-i--;
-                    
-                        } else if (abs(s.top()) == abs(a[i]))
-                        {
-                            s.pop();
-                        
-                        }
-                    }
-                }
-           
             }
         }
         vector<int> ans;
