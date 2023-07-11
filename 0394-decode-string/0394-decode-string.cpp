@@ -52,17 +52,19 @@ public:
                 string t;
                 while (st.top() != '[')
                 {
-                    t = st.top()+t;
+                    t += st.top();
                     st.pop();
                 }
+                reverse(t.begin(),t.end());
                 st.pop();
 
                 string y;
                 while (!st.empty() && isdigit(st.top()))
                 {
-                    y = st.top()+y;
+                    y += st.top();
                     st.pop();
                 }
+                reverse(y.begin(),y.end());
                 int k = stoi(y);
                 while (k--)
                 {
