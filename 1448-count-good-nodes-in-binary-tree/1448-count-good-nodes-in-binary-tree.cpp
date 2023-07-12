@@ -23,11 +23,15 @@ public:
 
         
     }
-    int goodNodes(TreeNode* root) {
+    int goodNodes(TreeNode* r,int ma=-10000) {
         //dfs approach
-        int maxval=INT_MIN;
-        int count=0;
-         dfs(count,maxval,root);
-        return count;
+        // int maxval=INT_MIN;
+        // int count=0;
+        //  dfs(count,maxval,root);
+        // return count;
+        
+        //similar approach
+        
+        return r?goodNodes(r->left,max(ma,r->val))+goodNodes(r->right,max(ma,r->val))+(r->val>=ma):0;
     }
 };
