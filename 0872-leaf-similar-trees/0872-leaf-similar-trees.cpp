@@ -18,11 +18,18 @@ public:
         dfs(v,root->right);
         return ;
     }
+
+    
+    
     bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        // dfs approach
+        
         vector<int>v1,v2;
         dfs(v1,root1);
         dfs(v2,root2);
         return v1==v2;
+        
+       
         
     }
 };
