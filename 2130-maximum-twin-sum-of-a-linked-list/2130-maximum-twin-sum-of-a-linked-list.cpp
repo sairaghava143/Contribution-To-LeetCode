@@ -33,19 +33,49 @@ public:
         
         //using slow and fast pointer approach
         
-        ListNode* slow=head;
-        ListNode* fast=head;
+//         ListNode* slow=head;
+//         ListNode* fast=head;
         
+//         while(fast && fast->next){
+//             fast=fast->next->next;
+//             slow=slow->next;
+//         }
+        
+//         //reverse second half
+        
+//         ListNode* prev=nullptr;
+//         ListNode* next=nullptr;
+        
+//         while(slow){
+//             next=slow->next;
+//             slow->next=prev;
+//             prev=slow;
+//             slow=next;
+//         }
+        
+//         int maxsum=0;
+        
+//         //cal sum of twins and getting maxsum
+        
+//         while(prev){
+//             maxsum=max(maxsum,head->val+prev->val);
+//             head=head->next;
+//             prev=prev->next;
+//         }
+//         return maxsum;
+        
+        
+        //pratice
+        
+        ListNode* slow=head,*fast=head;
         while(fast && fast->next){
             fast=fast->next->next;
             slow=slow->next;
         }
         
-        //reverse second half
+        //reverse list from middle 
         
-        ListNode* prev=nullptr;
-        ListNode* next=nullptr;
-        
+        ListNode* prev=NULL,*next=NULL;
         while(slow){
             next=slow->next;
             slow->next=prev;
@@ -53,10 +83,8 @@ public:
             slow=next;
         }
         
+        //cal maxsum using reverse list
         int maxsum=0;
-        
-        //cal sum of twins and getting maxsum
-        
         while(prev){
             maxsum=max(maxsum,head->val+prev->val);
             head=head->next;
