@@ -15,7 +15,7 @@ public:
         //bruteforce approach dfs
         
         if(!root)return 0;
-        return sumup(0,root,target)+pathSum(root->left,target)+pathSum(root->right,target);
+        return pathSum(root->left,target)+pathSum(root->right,target)+sumup(0,root,target);
     }
     int sumup(long long currsum,TreeNode* root,int target){
         if(!root)return 0;
