@@ -44,7 +44,7 @@ public:
         //reverse second half
         
         ListNode* prev=nullptr;
-        ListNode* next;
+        ListNode* next=nullptr;
         
         while(slow){
             next=slow->next;
