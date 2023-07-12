@@ -13,9 +13,11 @@ class Solution {
 public:
     int pathSum(TreeNode* root, int target) {
         //bruteforce approach dfs
-        
-        if(!root)return 0;
-        return pathSum(root->left,target)+pathSum(root->right,target)+sumup(0,root,target);
+      if(!root)return 0;
+        int count=sumup(0,root,target);
+        int leftcount=pathSum(root->left,target);
+        int rightcount=pathSum(root->right,target);
+        return count+rightcount+leftcount;
     }
     int sumup(long long currsum,TreeNode* root,int target){
         if(!root)return 0;
