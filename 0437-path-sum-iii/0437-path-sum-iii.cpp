@@ -15,9 +15,12 @@ public:
         //bruteforce approach dfs
       if(!root)return 0;
         int count=sumup(0,root,target);
+        
         int leftcount=pathSum(root->left,target);
         int rightcount=pathSum(root->right,target);
-        return count+rightcount+leftcount;
+        
+        int total=count+rightcount+leftcount;
+        return total;
     }
     int sumup(long long currsum,TreeNode* root,int target){
         if(!root)return 0;
