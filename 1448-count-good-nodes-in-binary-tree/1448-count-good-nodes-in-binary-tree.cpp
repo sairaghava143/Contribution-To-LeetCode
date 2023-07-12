@@ -19,7 +19,7 @@ public:
         maxval=max(maxval,root->val);
         dfs(count,maxval,root->left);
         dfs(count,maxval,root->right);
-        return;
+        // return;
 
         
     }
