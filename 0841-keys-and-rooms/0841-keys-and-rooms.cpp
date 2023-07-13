@@ -31,7 +31,7 @@ public:
                 if(s.count(j)==0){
                     dfs.push(j);
                     s.insert(j);
-                                    if(s.size()==rooms.size())return true;
+                                    // if(s.size()==rooms.size())return true;
 
                     }
             }
