@@ -56,10 +56,14 @@ public:
         if(!root)return 0;
         vector<int>v;
         dfs(v,0,root);
-        int x=*max_element(v.begin(),v.end());
+        int ans=0;
+        int maxsum=INT_MIN;
         for(int i=0;i<v.size();i++){
-            if(v[i]==x)return i+1;
+            if(v[i]>maxsum){
+                maxsum=v[i];
+                ans=i+1;
+            }
         }
-        return 0;
+        return ans;
     }
 };
