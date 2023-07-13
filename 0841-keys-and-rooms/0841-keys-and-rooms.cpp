@@ -21,17 +21,17 @@ public:
         
         //dfs using stack
         
-        stack<int>dfs;
+        queue<int>dfs;
         dfs.push(0);
         unordered_set<int>s={0};
         while(!dfs.empty()){
-            int i=dfs.top();
+            int i=dfs.front();
             dfs.pop();
             for(int j:rooms[i]){
                 if(s.count(j)==0){
                     dfs.push(j);
                     s.insert(j);
-                                    // if(s.size()==rooms.size())return true;
+                                    if(s.size()==rooms.size())return true;
 
                     }
             }
