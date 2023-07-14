@@ -17,13 +17,13 @@ public:
         vector<pair<int,int>>dirs={{1,0},{-1,0},{0,1},{0,-1}};
         int time=-1;
         while(!q.empty()){
-            int n=q.size();
-            while(n--){
+            int z=q.size();
+            while(z--){
                 auto it=q.front();
                 q.pop();
                 for(auto dir:dirs){
                     int i=it.first+dir.first,j=it.second+dir.second;
-                    if(i>=0 && i<m && j>=0 && j<grid[i].size() && grid[i][j]==1){
+                    if(i>=0 && i<m && j>=0 && j<n && grid[i][j]==1){
                         fo--;
                         grid[i][j]=2;
                         q.push({i,j});
