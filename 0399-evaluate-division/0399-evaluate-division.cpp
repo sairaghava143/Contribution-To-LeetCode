@@ -1,7 +1,7 @@
 class Solution
 {
 public:
-    void dfs(const string &start, const string &end, double &val, bool &found, map<string, int> &visited, map<string, double> &mp, map<string, vector<string>> &graph)
+    void dfs( string start, string end, double &val, bool &found, map<string, int> &visited, map<string, double> &mp, map<string, vector<string>> &graph)
     {
         visited[start] = 1;
         if (found)
@@ -9,7 +9,7 @@ public:
             return;
         }
 
-        for (const auto &it : graph[start])
+        for ( auto it : graph[start])
         {
             if (visited[it] != 1)
             {
