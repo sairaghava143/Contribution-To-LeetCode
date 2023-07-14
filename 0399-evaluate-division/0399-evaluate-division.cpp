@@ -1,82 +1,90 @@
-
 class Solution
 {
 public:
-    
-void dfs(
-    const string& start, const string& end,
-    map<string, double>& mp, map<string, vector<string>>& graph,
-    double& val, map<string, int>& visited, bool& found
-) {
-    visited[start] = 1;
+    void dfs(const string &start, const string &end, double &val, bool &found, map<string, int> &visited, map<string, double> &mp, map<string, vector<string>> &graph)
+    {
+        visited[start] = 1;
+        if (found)
+        {
+            return;
+        }
 
-    if (found == true)
-        return;
+        for (const auto &it : graph[start])
+        {
+            if (visited[it] != 1)
+            {
+                val *= mp[start + "->" + it];
+                if (end == it)
+                {
+                    found = true;
+                    return;
+                }
+                dfs(it, end, val, found, visited, mp, graph);
 
-    for (const auto& child : graph[start]) {
-        if (visited[child] != 1) {
-            val *= mp[start + "->" + child];
-
-            if (end == child) {
-                found = true;
-                return;
-            }
-
-            dfs(child, end, mp, graph, val, visited, found);
-
-            if (found == true) {
-                return;
-            } else {
-                val /= mp[start + "->" + child];
+                if (found)
+                {
+                    return;
+                }
+                else
+                {
+                    val /= mp[start + "->" + it];
+                }
             }
         }
+
+     
     }
-}
-    vector<double> calcEquation(
-        vector<vector<string>>& equations,
-        vector<double>& values,
-        vector<vector<string>>& queries
-    ) {
-        vector<double> ans;
+    vector<double> calcEquation(vector<vector<string>> &equations, vector<double> &values, vector<vector<string>> &queries)
+    {
         map<string, double> mp;
-        map<string, vector<string>> graph;
-
-        // Populate the mp and graph maps
-
-        for (int i = 0; i < equations.size(); i++) {
+        map < string, vector<string> >graph;
+        vector<double> ans;
+        for (int i = 0; i < equations.size(); i++)
+        {
             string u = equations[i][0];
             string v = equations[i][1];
+
             mp[u + "->" + v] = values[i];
             mp[v + "->" + u] = 1 / values[i];
+
             graph[u].push_back(v);
             graph[v].push_back(u);
         }
+        for (int i = 0; i < queries.size(); i++)
+        {
+           
 
-        for (int i = 0; i < queries.size(); i++) {
             string start = queries[i][0];
             string end = queries[i][1];
 
-            if (graph.find(start) == graph.end() || graph.find(end) == graph.end()) {
-                ans.push_back(-1);
-            } else {
+            if (graph.find(start) == graph.end() || graph.find(end) == graph.end())
+            {
+                ans.push_back(-1.0);
+            }
+            else
+            {
                 double val = 1;
-                map<string, int> visited;
                 bool found = false;
-
-                if (start == end) {
+                map<string, int> visited;
+                if (start == end)
+                {
                     found = true;
-                } else {
-                    dfs(start, end, mp, graph, val, visited, found);
+                }
+                else
+                {
+                    dfs(start, end, val, found, visited, mp, graph);
                 }
 
-                if (found) {
+                if (found)
+                {
                     ans.push_back(val);
-                } else {
+                }
+                else
+                {
                     ans.push_back(-1);
                 }
             }
         }
-
         return ans;
     }
 };
