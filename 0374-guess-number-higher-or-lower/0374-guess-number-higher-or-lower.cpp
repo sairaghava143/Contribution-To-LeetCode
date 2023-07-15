@@ -13,11 +13,12 @@ public:
         long long i=1,j=n;
         while(i<=j){
             int g=(i+j)/2;
-        if(guess(g)==0){
+            int x=guess(g);
+        if(x==0){
             return g;
-        }else if(guess(g)==-1){
+        }else if(x==-1){
             j=g-1;
-        }else if(guess(g)==1){
+        }else if(x==1){
             i=g+1;
         }
         }
