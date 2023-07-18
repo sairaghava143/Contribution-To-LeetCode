@@ -12,7 +12,7 @@ public:
                     temp.push_back(s+cand);
                 }
             }
-            res.swap(temp);
+            res=temp;
         }
         return res;
     }
