@@ -1,3 +1,5 @@
+//practice trie
+
 class TrieNode{
     public:
     TrieNode *child[26];
@@ -5,14 +7,16 @@ class TrieNode{
     
     TrieNode(){
         isWord=false;
-        for(auto& it:child){
+        for(auto &it:child){
             it=nullptr;
         }
-    } 
+    }
 };
+
+TrieNode *root;
+
 class Trie {
 public:
-    TrieNode *root;
     Trie() {
         root=new TrieNode();
     }
@@ -24,35 +28,33 @@ public:
             if(!p->child[i]){
                 p->child[i]=new TrieNode();
             }
-                            p=p->child[i];
-
-            
+            p=p->child[i];
         }
-        p->isWord=true;
+       p->isWord=true; 
     }
     
     bool search(string word) {
-        TrieNode* p=root;
+          TrieNode *p=root;
         for(auto &it:word){
             int i=it-'a';
             if(!p->child[i]){
-                return false;
+               return false;
             }
             p=p->child[i];
         }
-        return p->isWord;
+       return p->isWord; 
     }
     
     bool startsWith(string prefix) {
-        TrieNode* p=root;
+          TrieNode *p=root;
         for(auto &it:prefix){
             int i=it-'a';
             if(!p->child[i]){
-                return false;
+               return false;
             }
             p=p->child[i];
         }
-        return true;
+       return true; 
     }
 };
 
