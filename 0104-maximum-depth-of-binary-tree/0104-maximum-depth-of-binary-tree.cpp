@@ -11,36 +11,13 @@
  */
 class Solution {
 public:
-    
-   
     int maxDepth(TreeNode* root) {
-//         bfs approach
-        // if(root==NULL)return NULL;
-        // int count=0;
-        // queue<TreeNode*>q;
-        // q.push(root);
-        // while(!q.empty()){
-        //     int n=q.size();
-        //     for(int i=0;i<n;i++){
-        //         TreeNode* curr=q.front();
-        //         q.pop();
-        //         if(curr->left)q.push(curr->left);
-        //         if(curr->right)q.push(curr->right);
-        //     }
-        //     count++;
-        // }
-        // return count++;
+        if(root==nullptr){
+            return 0;
+        }
         
-        //dfs approach
-      
-        if(root==NULL)return NULL;
-        int leftsub=maxDepth(root->left);
-        int rightsub=maxDepth(root->right);
-        
-        return max(leftsub,rightsub)+1;
-      
-            
-       
-        
+        int leftdepth=maxDepth(root->left);
+        int rightdepth=maxDepth(root->right);
+            return 1+max(leftdepth,rightdepth);
     }
 };
