@@ -1,27 +1,29 @@
 class Solution {
 public:
-    int dfs(vector<vector<int>>&g,vector<bool>&v,int node){
-        v[node]=true;
-        int count=0;
-        for(int i:g[node]){
-            if(!v[abs(i)]){
-                count+=(dfs(g,v,abs(i)))+(i>0);
+    int dfs(vector<vector<int>>&al,vector<bool>&v,int i){
+                int change=0;
+
+        v[i]=true;
+        for(auto &it:al[i]){
+            if(!v[abs(it)]){
+                
+                change+=dfs(al,v,abs(it))+(it>0);
             }
         }
-        return count;
+        return change;
     }
     int minReorder(int n, vector<vector<int>>& connections) {
-        //using dfs approach directed graph
-        
-        vector<vector<int>>g(n);
-    
-        for( vector<int> &v:connections ){
-            g[v[0]].push_back(v[1]);
-            g[v[1]].push_back(-v[0]);
+        //making adj list
+
+        vector<vector<int>>al(n);
+        for(vector<int>&it:connections){
+            al[it[0]].push_back(it[1]);
+            al[it[1]].push_back(-it[0]);
+
         }
+     
         vector<bool>v(n);
-        return dfs(g,v,0);
-        
+        return dfs(al,v,0);
         
     }
 };
